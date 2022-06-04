@@ -1,0 +1,2 @@
+from third_party.RTVC.encoder.data_objects.speaker_verification_dataset import SpeakerVerificationDataset
+from third_party.RTVC.encoder.data_objects.speaker_verification_dataset import SpeakerVerificationDataLoader

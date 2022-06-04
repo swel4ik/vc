@@ -1,0 +1,22 @@
+Global_parameters:
+    inference_device: 'cpu'
+    batch_size: 4
+    used_model: 'Grad-TTS'
+
+Hi-Fi_Gan:
+    config_path: 'third_party/Grad_TTS/checkpts/config.json'
+    checkpoint_path: 'third_party/Grad_TTS/checkpts/g_02175000'
+
+Grad-TTS:
+    checkpoint_path: 'third_party/Grad_TTS/checkpts/grad_424.pt'
+    corpus_dictionary_path: 'third_party/Grad_TTS/resources/cmu_dictionary'
+    timesteps: 10 # count of timesteps (10-1000) increases the quality of speech, but also it increases the inference time
+
+WaveGrad2:
+    checkpoint_path: 'third_party/wavegrad2/ckpts/wavegrad2.ckpt'
+    hparams_config_path: 'third_party/wavegrad2/hparameter.yaml'
+    lexicon_path: 'third_party/wavegrad2/lexicon/librispeech-lexicon.txt'
+    timesteps: 1000 # count of timesteps increases the quality of speech, but also it increases the inference time
+
+VoiceEncoder:
+    checkpoint_path: 'third_party/RTVC/encoder/saved_models/encoder_1m.pt'

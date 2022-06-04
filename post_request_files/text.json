@@ -1,0 +1,10 @@
+{
+"format": "wav",
+"out": "zip",
+"texts": {
+
+    "Text_1": "Hello, I am a text to speech model from the Brouton Lab. They were also asked to discuss any changes planned for future implementation or changes they would like to implement.",
+    "Text_2": "Good luck!"
+
+        }
+}

@@ -1,0 +1,37 @@
+data:
+  #Options: 1) dir with following format dir(dir/speakers/wavs_per_speaker)
+  #             2) list of wavs (including one element)
+  /home/anastasia/ardrvk/ardvrk_voice_cloning/datasets/t
+device:
+  cuda
+wavegrad_ckpts:
+  #/home/anastasia/ardrvk/ardvrk_voice_cloning/third_party/wavegrad2/model_chekpt/last.ckpt
+
+grad_tts_ckpts:
+  /home/anastasia/ardrvk/ardvrk_voice_cloning/third_party/Grad_TTS/model_checkpoint/grad_312.pt
+
+hifi_gan:
+  ckpts:
+    - /home/anastasia/ardrvk/ardvrk_voice_cloning/third_party/Grad_TTS/hifi_gan/cp_hifigan_emb/g_01605000
+#    - /home/user/ardvk/ardvrk_voice_cloning/third_party/Grad-TTS/hifi-gan/VCTK_V2/generator_v2
+#    - /home/user/ardvk/ardvrk_voice_cloning/third_party/Grad-TTS/hifi-gan/VCTK_V3/generator_v3
+#    - /home/user/ardvk/ardvrk_voice_cloning/third_party/Grad-TTS/hifi-gan/cp_hifigan/g_02500000
+#    - /home/user/ardvk/ardvrk_voice_cloning/third_party/Grad-TTS/hifi-gan/cp_hifigan1/g_00340000
+  configs:
+    - /home/anastasia/ardrvk/ardvrk_voice_cloning/third_party/Grad_TTS/hifi_gan/cp_hifigan_emb/config.json
+#    - /home/user/ardvk/ardvrk_voice_cloning/third_party/Grad-TTS/hifi-gan/VCTK_V2/config.json
+#    - /home/user/ardvk/ardvrk_voice_cloning/third_party/Grad-TTS/hifi-gan/VCTK_V3/config.json
+#    - /home/user/ardvk/ardvrk_voice_cloning/third_party/Grad-TTS/hifi-gan/cp_hifigan/config.json
+#    - /home/user/ardvk/ardvrk_voice_cloning/third_party/Grad-TTS/hifi-gan/cp_hifigan1/config.json
+
+encoder_ckpts:
+#- /home/user/ardvk/ardvrk_voice_cloning/third_party/Real-Time-Voice-Cloning-master/encoder/saved_models/tanh_run.pt
+#- /home/user/ardvk/ardvrk_voice_cloning/third_party/Real-Time-Voice-Cloning-master/encoder/saved_models/tanh_run_330000_346501.pt
+#- /home/user/ardvk/ardvrk_voice_cloning/third_party/Real-Time-Voice-Cloning-master/encoder/saved_models/tanh_run_330000_370001.pt
+#- /home/user/ardvk/ardvrk_voice_cloning/third_party/Real-Time-Voice-Cloning-master/encoder/saved_models/tanh_run_330000_start.pt
+ - /home/anastasia/ardrvk/ardvrk_voice_cloning/third_party/RTVC/encoder/saved_models/blue_fish_ew.pt
+
+output_path:
+  /home/anastasia/ardrvk/ardvrk_voice_cloning/datasets/res_output40
+output_text:
+  Hello, I am a text to speech model from the Brouton Lab. They were also asked to discuss any changes planned for future implementation or changes they would like to implement. How you doing?

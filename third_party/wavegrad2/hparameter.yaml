@@ -1,0 +1,76 @@
+train:
+  batch_size: 2
+  adam:
+    lr: 3e-4
+    weight_decay: 1e-6
+  decay:
+    rate: 0.05
+    start: 25000
+    end: 100000
+  num_workers: 16
+  gpus: 2 #ddp
+  loss_rate:
+    dur: 1.0
+
+data:
+  lang: 'eng'
+  text_cleaners: ['english_cleaners'] # korean_cleaners, english_cleaners, chinese_cleaners
+  speakers: '/media/alexey/SSDDataDisk/datasets/text_to_speech/preprocess_libritts_360/speakers.json'
+  train_dir: '/media/alexey/SSDDataDisk/datasets/text_to_speech/preprocess_libritts_360/'
+  train_meta: 'train.txt'  # relative path of metadata file from train_dir
+  val_dir: '/media/alexey/SSDDataDisk/datasets/text_to_speech/preprocess_libritts_360/'
+  val_meta: 'val.txt'  # relative path of metadata file from val_dir'
+  lexicon_path: 'lexicon/librispeech-lexicon.txt'
+
+audio:
+  n_mel_channels: 80
+  filter_length: 1024
+  hop_length: 256
+  win_length: 1024
+  sampling_rate: 22050
+  mel_fmin: 0.0
+  mel_fmax: 8000.0
+
+encoder:
+  channel: 512
+  kernel: 5
+  depth: 3
+  dropout_rate: 0.5
+  speaker_emb: 256
+
+dur_predictor:
+  dur_lstm_channel: 512
+  range_lstm_channel: 512  
+
+window:
+  scale: 300
+  length: 256
+
+wavegrad:
+  is_large: False #if False, Base
+  encode_channel: 768 ##512+64
+  scale_factors: [5,5,3,2,2]
+  upsample:
+    preconv_channel: 768
+    out_channels: [512, 512, 256, 128, 128]
+    #dilations: [[1,2,4,8],[1,2,4,8],[1,2,4,8],[1,2,4,8],[1,2,4,8]]
+    dilations: [[1,2,4,8],[1,2,4,8],[1,2,4,8],[1,2,1,2],[1,2,1,2]]
+  downsample:
+    preconv_channel: 32
+    out_channels: [128, 128, 256, 512]
+    dilations: [[1,2,4],[1,2,4],[1,2,4],[1,2,4]]
+  pos_emb_dim: 512 
+
+ddpm:
+  max_step: 1000
+  noise_schedule: "torch.linspace(1e-6, 0.01, hparams.ddpm.max_step)"
+  pos_emb_scale: 5000
+  pos_emb_channels: 128 
+  infer_step: 8 #TBD
+  infer_schedule: "torch.tensor([1e-6,2e-6,1e-5,1e-4,1e-3,1e-2,1e-1,9e-1])" #TBD
+
+log:
+  name: 'wavegrad2'
+  checkpoint_dir: '/media/alexey/SSDDataDisk/experiments/text_to_speech/wavegrad_embedded_dataset/checkpoint'
+  tensorboard_dir: '/media/alexey/SSDDataDisk/experiments/text_to_speech/wavegrad_embedded_dataset/tensorboard'
+  test_result_dir: '/media/alexey/SSDDataDisk/experiments/text_to_speech/wavegrad_embedded_dataset/result'
